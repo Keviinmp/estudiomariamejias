@@ -1,0 +1,121 @@
+/* Fondo oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+/* Ventana */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 650px;
+    padding: 25px;
+    border-radius: 14px;
+    z-index: 1001;
+}
+
+/* Botón cerrar */
+.cerrar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.titulo {
+    margin-top: 2rem; /* ajusta según el tamaño de la X */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Wrapper de imágenes con flechas */
+.imagenes-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.scroll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;    /* tamaño relativo a la fuente */
+    cursor: pointer;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+}
+
+
+/* Contenedor de imágenes */
+.imagenes {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+.imagenes img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+/* Precio + botón */
+.info-reserva {
+    display: flex;
+    justify-content: space-between; /* botón a la derecha */
+    align-items: center;            /* alinea el botón con el centro de .info */
+    gap: 1rem;
+}
+
+.info-reserva .info {
+    display: flex;
+    flex-direction: column; /* precio arriba, duración debajo */
+    gap: 0.1rem;            /* mínimo espacio entre precio y duración */
+}
+
+.info-reserva .info p {
+    margin: 0;               /* elimina márgenes de los <p> */
+}
+
+.precio {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.duracion {
+    color: #666;
+}
+
+/* Botón reservar */
+.btn-reservar {
+    background-color: #1f8aa8;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}

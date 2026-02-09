@@ -8,6 +8,5 @@ import { CitaComponent } from './paginas/cita/cita.component';
 export const routes: Routes = [
     { path: '', component: InicioComponent },
     { path: 'servicios', component: ServiciosComponent },
-    { path: 'servicio/:id', component: DetalleServicioComponent},
     { path: 'cita', component: CitaComponent}
 ];

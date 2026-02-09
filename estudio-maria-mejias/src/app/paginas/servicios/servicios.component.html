@@ -1,1 +1,48 @@
-<p>servicios.component works!</p>
+<div class="categorias">
+  <div class="categoria" *ngFor="let categoria of serviciosPorCategoria | keyvalue">
+
+    <div class="categoria-header" (click)="categoriasAbiertas[categoria.key] = !categoriasAbiertas[categoria.key]">
+      <div class="titulo-y-boton">
+        <h2>{{ categoria.key }}</h2>
+        <button class="expansion-servicios">
+          {{ categoriasAbiertas[categoria.key] ? 'v' : '>' }}
+        </button>
+      </div>
+      
+      <span class="contador">
+        {{ categoria.value.length }} servicios
+      </span>
+    </div>
+
+    <div class="servicios" *ngIf="categoriasAbiertas[categoria.key]">
+      <div class="servicio" *ngFor="let servicio of categoria.value">
+        <div class="info-servicio">
+          <p>{{ servicio.nombre }}</p>
+          <p class="descripcion">{{ servicio.descripcion }}</p>
+
+          <div class="miniaturas" *ngIf="servicio.imagenes">
+            <img *ngFor="let img of servicio.imagenes | slice:0:4" [src]="img" />
+            <button class="ver-mas" (click)="abrirDetalle(servicio)">...</button>
+          </div>
+        </div>
+
+        <div class="precio-reserva">
+          <div class="precio">
+            <strong>
+              {{ servicio.precio | number:'1.0' }} €{{ servicio.precioPlus ? '+' : '' }}
+            </strong>
+            <span>{{ servicio.duracion }}</span>
+          </div>
+          <button class="btn-reservar">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<app-detalle-servicio
+  *ngIf="servicioSeleccionado"
+  [servicio]="servicioSeleccionado"
+  (cerrar)="cerrarDetalle()"
+></app-detalle-servicio>
