@@ -33,14 +33,14 @@
             </strong>
             <span>{{ servicio.duracion }}</span>
           </div>
-          <button class="btn-reservar">Reservar</button>
+          <button (click)="abrirReserva(servicio)" class="btn-reservar">Reservar</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL -->  
 <app-detalle-servicio
   *ngIf="servicioSeleccionado"
   [servicio]="servicioSeleccionado"

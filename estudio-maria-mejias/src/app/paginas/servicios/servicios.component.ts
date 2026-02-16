@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioService, Servicio } from '../../services/servicio.service';
 
+import { MatDialog } from '@angular/material/dialog';
+import { ReservaModalComponent } from '../reserva-modal.component/reserva-modal.component';
+
 @Component({
   selector: 'app-servicios',
   standalone: false,
@@ -12,7 +15,10 @@ export class ServiciosComponent implements OnInit {
   servicios: Servicio[] = [];
   servicioSeleccionado?: Servicio;
 
-  constructor(private servicioService: ServicioService) { }
+  constructor(
+    private servicioService: ServicioService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.servicioService.getServicios().subscribe(data => {
@@ -33,7 +39,6 @@ export class ServiciosComponent implements OnInit {
     }
   }
   
-
   serviciosPorCategoria: { [categoria: string]: Servicio[] } = {};
   categoriasAbiertas: { [categoria: string]: boolean } = {};
 
@@ -44,5 +49,13 @@ export class ServiciosComponent implements OnInit {
 
   cerrarDetalle() {
     this.servicioSeleccionado = undefined;
+  }
+
+  abrirReserva(servicio: Servicio) {
+    this.dialog.open(ReservaModalComponent, {
+      width: '1000px',
+      data: servicio,
+      panelClass: 'custom-modalbox'
+    });
   }
 }

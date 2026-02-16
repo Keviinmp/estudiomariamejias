@@ -136,7 +136,7 @@
     color: #1f8aa8;
     font-size: 0.8rem;
     cursor: pointer;
-    display: flex;
+    display : flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s;

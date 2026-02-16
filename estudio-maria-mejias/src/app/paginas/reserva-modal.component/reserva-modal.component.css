@@ -1,0 +1,205 @@
+/* Contenedor principal del modal */
+.modal-container {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 10px;
+  color: #333;
+}
+
+/* Cabecera: Mes y Botón cerrar */
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.titulo-mes {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.btn-cerrar {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  color: #333;
+}
+
+/* CALENDARIO: Tarjetas de días */
+.calendario-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.dias-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 5px;
+  scrollbar-width: none; 
+}
+
+.dias-scroll::-webkit-scrollbar { display: none; }
+
+.dia-card {
+  min-width: 65px;
+  height: 90px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+/* Día seleccionado (Turquesa) */
+.dia-card.seleccionado {
+  background: #1a8a9d;
+  color: #fff;
+  border-color: #1a8a9d;
+}
+
+.dia-nombre { font-size: 0.8rem; margin-bottom: 4px; color: #777; }
+.seleccionado .dia-nombre { color: #e0e0e0; }
+.dia-numero { font-size: 1.3rem; font-weight: 700; }
+
+.punto-agenda {
+  width: 14px;
+  height: 4px;
+  background: #f0ad4e;
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+/* SELECTOR DE TURNOS */
+.turno-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.turno-selector {
+  background: #f0f2f5;
+  padding: 5px;
+  border-radius: 12px;
+  display: flex;
+}
+
+.turno-selector button {
+  border: none;
+  background: transparent;
+  padding: 10px 25px;
+  border-radius: 10px;
+  color: #888;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.turno-selector button.active {
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* GRID DE HORAS */
+.horas-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.hora-chip {
+  background: #fff;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.hora-chip.hora-active {
+  background: #1a8a9d;
+  color: #fff;
+  border-color: #1a8a9d;
+}
+
+/* TARJETA DE RESUMEN */
+.resumen-card {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+.resumen-fila {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.resumen-hora {
+  text-align: right;
+  color: #888;
+  font-size: 0.9rem;
+  margin: 8px 0;
+}
+
+.empleado-info {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.label-empleado { color: #888; font-size: 0.9rem; }
+.nombre-empleada { font-weight: 600; }
+
+/* SECCIÓN TOTAL */
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 25px;
+  padding: 0 5px;
+}
+
+.total-label { font-size: 1.1rem; font-weight: 500; }
+.monto { font-size: 1.8rem; font-weight: 800; color: #000; }
+.total-duracion { color: #888; font-size: 0.9rem; margin-top: -5px; text-align: right; }
+
+/* BOTÓN CONTINUAR */
+.btn-continuar {
+  width: 100%;
+  background: #1a8a9d;
+  color: #fff;
+  border: none;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.btn-continuar:hover { background: #146d7c; }
+.btn-continuar:disabled { background: #ccc; cursor: not-allowed; }
+
+/* Iconos de navegación */
+.nav-btn { background: none; border: none; cursor: pointer; color: #1a8a9d; }
