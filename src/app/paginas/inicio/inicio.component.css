@@ -1,0 +1,288 @@
+/* --- CONTENEDOR RAIZ --- */
+.inicio-container {
+    min-height: 100vh;
+    padding: 40px 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px; 
+    box-sizing: border-box;
+  }
+  
+  /* --- ESTILOS GLASS GENERALES --- */
+  .presentacion-glass, 
+  .sobre-mi-glass, 
+  .comodidades-glass,
+  .contacto-glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px; 
+    width: 96%;
+    max-width: 1400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+  }
+  
+  /* --- CABECERA PRESENTACIÓN --- */
+  .presentacion-glass {
+    padding: 50px 40px;
+    text-align: center;
+  }
+  
+  .presentacion-glass h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin: 0 0 15px 0;
+    background: linear-gradient(45deg, #1f8aa8, #a81f8e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  
+  .subtitulo {
+    font-size: 1.15rem; 
+    color: #333;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* --- CONTENEDOR DIVIDIDO (CARRUSEL + MAPA) --- */
+.contenedor-carrusel-mapa {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 30px;
+    width: 96%;
+    max-width: 1400px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+  }
+  
+  /* Columna Izquierda: Carrusel */
+  .seccion-carrusel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .contenedor-foto {
+    width: 450px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+  
+  .foto-animada {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Columna Derecha: Mapa */
+  .seccion-mapa {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contenedor-mapa {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .info-ubicacion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f8aa8;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .flecha {
+    background: rgba(255, 255, 255, 0.6);
+    color: #1f8aa8;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+  
+  @media (max-width: 900px) {
+    .contenedor-carrusel-mapa {
+      flex-direction: column;
+      padding: 20px;
+    }
+    .contenedor-foto {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+  
+  /* --- SOBRE MÍ --- */
+  .sobre-mi-glass {
+    padding: 50px;
+  }
+  
+  .sobre-mi-contenido {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+  
+  .sobre-mi-texto { flex: 1.8; }
+  
+  .sobre-mi-texto h2 {
+    font-size: 2.2rem; 
+    color: #1f8aa8;
+    margin: 20px 0;
+  }
+  
+  .sobre-mi-imagen {
+    flex: 1;
+    height: 380px;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  
+  .sobre-mi-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* --- SECCIÓN COMODIDADES --- */
+  .comodidades-glass {
+    padding: 40px 60px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .comodidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  
+  .comodidad-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    cursor: default;
+  }
+  
+  .comodidad-item:hover {
+    transform: translateY(-12px); 
+  }
+  
+  .comodidad-item mat-icon {
+    color: #1f8aa8;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    transition: filter 0.3s ease;
+  }
+  
+  .comodidad-item:hover mat-icon {
+    filter: drop-shadow(0 8px 12px rgba(31, 138, 168, 0.3));
+  }
+  
+  .comodidad-item span {
+    color: #333;
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+  
+  /* --- FOOTER UNIFICADO --- */
+  .contacto-glass {
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .contacto-item mat-icon {
+    color: #1f8aa8;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+  }
+  
+  .info-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+  }
+  
+  .info-meta span {
+    font-size: 0.75rem;
+    color: #777;
+    text-transform: uppercase;
+  }
+  
+  .info-meta p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .link-instagram:hover {
+    transform: translateY(-3px);
+    color: #1f8aa8;
+  }
+  
+  /* BOTÓN --- */
+  .btn-reserva-directa {
+    background: #1f8aa8;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
+  }
+  
+  /* --- RESPONSIVO --- */
+  @media (max-width: 1024px) {
+    .sobre-mi-contenido { flex-direction: column-reverse; text-align: center; }
+    .contacto-glass { justify-content: center; gap: 40px; }
+    .sobre-mi-imagen { height: 300px; width: 100%; }
+    .contenedor-foto { height: 450px; } /* Ajuste de altura en móvil */
+  }

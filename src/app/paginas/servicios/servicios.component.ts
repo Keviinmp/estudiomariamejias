@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicioService, Servicio } from '../../services/servicio.service';
 
 import { MatDialog } from '@angular/material/dialog';
-import { ReservaModalComponent } from '../reserva-modal.component/reserva-modal.component';
+import { ReservaModalComponent } from '../reserva-modal/reserva-modal.component';
 
 @Component({
   selector: 'app-servicios',
@@ -11,9 +11,12 @@ import { ReservaModalComponent } from '../reserva-modal.component/reserva-modal.
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
-
   servicios: Servicio[] = [];
   servicioSeleccionado?: Servicio;
+  serviciosPorCategoria: { [categoria: string]: Servicio[] } = {};
+  categoriasAbiertas: { [categoria: string]: boolean } = {};
+  
+  cargando: boolean = true;
 
   constructor(
     private servicioService: ServicioService,
@@ -21,15 +24,21 @@ export class ServiciosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.servicioService.getServicios().subscribe(data => {
-      this.servicios = data;
-      this.agruparPorCategoria();
+    this.servicioService.getServicios().subscribe({
+      next: (data) => {
+        this.servicios = data;
+        this.agruparPorCategoria();
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error("Error cargando servicios:", err);
+        this.cargando = false;
+      }
     });
   }
   
   agruparPorCategoria() {
     this.serviciosPorCategoria = {};
-  
     for (const servicio of this.servicios) {
       if (!this.serviciosPorCategoria[servicio.categoria]) {
         this.serviciosPorCategoria[servicio.categoria] = [];
@@ -38,10 +47,6 @@ export class ServiciosComponent implements OnInit {
       this.serviciosPorCategoria[servicio.categoria].push(servicio);
     }
   }
-  
-  serviciosPorCategoria: { [categoria: string]: Servicio[] } = {};
-  categoriasAbiertas: { [categoria: string]: boolean } = {};
-
 
   abrirDetalle(servicio: Servicio) {
     this.servicioSeleccionado = servicio;

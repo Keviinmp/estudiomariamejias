@@ -1,11 +1,13 @@
-/* Contenedor principal del modal */
+/* --- CONTENEDOR PRINCIPAL --- */
 .modal-container {
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  padding: 10px;
+  padding: 15px;
   color: #333;
+  max-width: 500px;
+  margin: 0 20px 0 20px;
 }
 
-/* Cabecera: Mes y Botón cerrar */
+/* --- CABECERA --- */
 .modal-header {
   display: flex;
   justify-content: center;
@@ -14,6 +16,7 @@
   margin-bottom: 25px;
 }
 
+
 .titulo-mes {
   font-size: 1.4rem;
   font-weight: 700;
@@ -21,14 +24,19 @@
   margin: 0;
 }
 
+.btn-atras {
+  position: absolute;
+  left: -5px;
+  color: #1a8a9d;
+}
+
 .btn-cerrar {
   position: absolute;
   right: -5px;
-  top: -5px;
   color: #333;
 }
 
-/* CALENDARIO: Tarjetas de días */
+/* --- PASO 1: CALENDARIO Y HORAS --- */
 .calendario-wrapper {
   display: flex;
   align-items: center;
@@ -40,7 +48,7 @@
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  padding: 5px;
+  padding: 10px 5px;
   scrollbar-width: none; 
 }
 
@@ -60,30 +68,33 @@
   transition: all 0.2s ease;
 }
 
-/* Día seleccionado (Turquesa) */
 .dia-card.seleccionado {
   background: #1a8a9d;
   color: #fff;
   border-color: #1a8a9d;
+  box-shadow: 0 4px 10px rgba(26, 138, 157, 0.3);
 }
 
 .dia-nombre { font-size: 0.8rem; margin-bottom: 4px; color: #777; }
 .seleccionado .dia-nombre { color: #e0e0e0; }
 .dia-numero { font-size: 1.3rem; font-weight: 700; }
 
-.punto-agenda {
-  width: 14px;
-  height: 4px;
-  background: #f0ad4e;
-  border-radius: 2px;
-  margin-top: 6px;
+/* DÍAS DESHABILITADOS (TU CURSOR PERSONALIZADO) */
+.dia-deshabilitado {
+  color: #ccc !important;
+  opacity: 0.5;
+  background-color: #f9f9f9 !important;
+  pointer-events: all !important; /* Necesario para que el cursor cambie */
+  cursor: url('/assets/imagenes/prohibido.png') 16 16, not-allowed !important;
 }
 
-/* SELECTOR DE TURNOS */
+.dia-deshabilitado .dia-nombre { color: #ccc; }
+
+/* TURNOS Y HORAS */
 .turno-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .turno-selector {
@@ -101,32 +112,31 @@
   color: #888;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .turno-selector button.active {
   background: #fff;
-  color: #333;
+  color: #1a8a9d;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* GRID DE HORAS */
-.horas-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.horas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .hora-chip {
   background: #fff;
   color: #333;
   border: 1px solid #e0e0e0;
-  padding: 12px 20px;
+  padding: 10px;
   border-radius: 10px;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  text-align: center;
   transition: 0.2s;
 }
 
@@ -136,70 +146,112 @@
   border-color: #1a8a9d;
 }
 
-/* TARJETA DE RESUMEN */
+/* --- PASO 2: FORMULARIO --- */
+.formulario-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 5px;
+  margin-bottom: 20px;
+
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  margin-left: 2px;
+}
+
+.campo input, 
+.campo textarea {
+  padding: 12px 15px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.campo input:focus, 
+.campo textarea:focus {
+  outline: none;
+  border-color: #1a8a9d;
+  box-shadow: 0 0 0 3px rgba(26, 138, 157, 0.1);
+}
+
+/* Validación de errores */
+.error-container {
+  min-height: 18px;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #d32f2f;
+  background-color: #fff8f8;
+}
+
+/* --- RESUMEN Y ÉXITO --- */
 .resumen-card {
-  background: #f8f9fa;
+  background: #f8fbfc;
   border-radius: 15px;
-  padding: 20px;
-  border: 1px solid #f0f0f0;
+  padding: 15px;
+  border: 1px solid #e0f0f2;
+  margin-top: 15px;
 }
 
 .resumen-fila {
   display: flex;
   justify-content: space-between;
   font-weight: 700;
-  font-size: 1.1rem;
 }
 
-.resumen-hora {
-  text-align: right;
-  color: #888;
+.resumen-detalle {
+  color: #1a8a9d;
   font-size: 0.9rem;
-  margin: 8px 0;
+  margin-top: 5px;
 }
 
-.empleado-info {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.exito-container {
+  text-align: center;
+  padding: 30px 10px;
 }
 
-.avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
-.label-empleado { color: #888; font-size: 0.9rem; }
-.nombre-empleada { font-weight: 600; }
-
-/* SECCIÓN TOTAL */
-.total-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 25px;
-  padding: 0 5px;
+.icono-exito {
+  font-size: 50px !important;
+  width: 50px !important;
+  height: 50px !important;
+  color: #4caf50;
+  margin-bottom: 15px;
 }
 
-.total-label { font-size: 1.1rem; font-weight: 500; }
-.monto { font-size: 1.8rem; font-weight: 800; color: #000; }
-.total-duracion { color: #888; font-size: 0.9rem; margin-top: -5px; text-align: right; }
-
-/* BOTÓN CONTINUAR */
+/* --- BOTONES DE ACCIÓN --- */
 .btn-continuar {
   width: 100%;
   background: #1a8a9d;
   color: #fff;
   border: none;
-  padding: 18px;
+  padding: 15px;
   border-radius: 12px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
   transition: background 0.3s;
 }
 
-.btn-continuar:hover { background: #146d7c; }
+.btn-continuar:hover:not(:disabled) { background: #146d7c; }
 .btn-continuar:disabled { background: #ccc; cursor: not-allowed; }
 
-/* Iconos de navegación */
 .nav-btn { background: none; border: none; cursor: pointer; color: #1a8a9d; }
+

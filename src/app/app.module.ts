@@ -3,15 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+// Para el backend simulado
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 // Componentes
 import { AppComponent } from './app'; 
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
-import { CitaComponent } from './paginas/cita/cita.component';
 import { ServiciosComponent } from './paginas/servicios/servicios.component';
 import { DetalleServicioComponent } from './paginas/detalle-servicio/detalle-servicio.component';
-import { ReservaModalComponent } from './paginas/reserva-modal.component/reserva-modal.component';
+import { ReservaModalComponent } from './paginas/reserva-modal/reserva-modal.component';
 
 // Material
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +29,7 @@ import { routes } from './app.routes';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { ResenasComponent } from './paginas/resenas/resenas.component';
 
 
 @NgModule({
@@ -32,14 +37,16 @@ import { environment } from '../environments/environment';
     AppComponent,
     NavbarComponent,
     InicioComponent,
-    CitaComponent,
     ServiciosComponent,
     DetalleServicioComponent,
-    ReservaModalComponent
+    ReservaModalComponent,
+    ResenasComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     MatDialogModule,
     CommonModule,
     MatIconModule,

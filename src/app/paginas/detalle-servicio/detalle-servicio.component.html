@@ -1,28 +1,32 @@
-<div class="overlay" (click)="cerrar.emit()"></div>
+<div *ngIf="cargando" class="cargando-container">
+  <p>Cargando información real del servicio...</p>
+</div>
 
-<div class="modal">
+<div *ngIf="!cargando && servicio">
+  <div class="overlay" (click)="cerrar.emit()"></div>
+
+  <div class="modal">
     <button class="cerrar" (click)="cerrar.emit()">✕</button>
 
     <h2 class="titulo">{{ servicio.nombre }}</h2>
 
-<div class="imagenes-wrapper">
-    <!-- Flecha izquierda solo si hay más de 4 imágenes -->
-    <button *ngIf="(servicio?.imagenes?.length ?? 0) > 4" class="scroll-btn prev" (click)="scrollLeft()">‹</button>
+    <div class="imagenes-wrapper">
+      <button *ngIf="(servicio?.imagenes?.length ?? 0) > 4" class="scroll-btn prev" (click)="scrollLeft()">‹</button>
 
-<div class="imagenes" #imagenesContainer>
-  <img *ngFor="let img of displayedImages()" [src]="img" />
-</div>
+      <div class="imagenes" #imagenesContainer>
+        <img *ngFor="let img of displayedImages()" [src]="img" />
+      </div>
 
-<button *ngIf="(servicio?.imagenes?.length ?? 0) > 4" class="scroll-btn next" (click)="scrollRight()">›</button>
-
-  </div>
-
-  <div class="info-reserva">
-    <div class="info">
-      <p class="precio">{{ servicio.precio }} €</p>
-      <p class="duracion">{{ servicio.duracion }}</p>
+      <button *ngIf="(servicio?.imagenes?.length ?? 0) > 4" class="scroll-btn next" (click)="scrollRight()">›</button>
     </div>
 
-    <button class="btn-reservar">Reservar</button>
+    <div class="info-reserva">
+      <div class="info">
+        <p class="precio">{{ servicio.precio }} €</p>
+        <p class="duracion">{{ servicio.duracion }}</p>
+      </div>
+
+      <button class="btn-reservar">Reservar</button>
+    </div>
   </div>
 </div>

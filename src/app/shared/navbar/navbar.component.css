@@ -1,68 +1,114 @@
-/* Navbar general */
+/* Navbar con efecto flotante y cristalino */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.2rem 1.5rem;
-    background-color: #1f8aa8;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    height: 70px;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: #dffcff; /* Fondo blanco para limpieza */
+  color: #333;
+  font-family: 'Poppins', sans-serif; /* Una fuente más moderna que Arial */
+  height: 85px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  box-sizing: border-box;
+}
+
+/* Integración del Logo Circular */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container {
+  width: 65px;
+  height: 65px;
+  overflow: hidden;
+  border-radius: 50%; /* Hace la foto totalmente circular */
+  border: 2px solid #1f8aa8; /* Un borde fino del color de tu marca */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05); /* Efecto zoom suave al pasar el ratón */
+}
+
+.logo-container img {
+  height: 100%;
+  width: auto;
+  object-fit: cover; /* Asegura que la foto no se estire */
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #1f8aa8;
+  letter-spacing: 1px;
+}
+
+/* Enlaces más elegantes */
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s;
+  padding: 10px 0;
+}
+
+/* Línea animada en lugar de un borde seco */
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #1f8aa8;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover, 
+.navbar-links li a.active {
+  color: #1f8aa8;
+}
+
+.navbar-links li a:hover::after,
+.navbar-links li a.active::after {
+  width: 100%;
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 1rem;
+    flex-direction: column;
   }
-  
-  /* Logo */
-  .navbar-logo {
-    display: flex;
-    align-items: center;
+
+  .brand-name {
+    display: none; /* Ocultamos el texto en móvil para ahorrar espacio */
   }
-  
-  .navbar-logo img {
-    height: 60px;
-    width: auto;
-    display: block;
-  }
-  
-  /* Lista de links */
+
   .navbar-links {
-    display: flex;
+    margin-top: 1rem;
     gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
   }
-  
-  .navbar-links li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    transition: color 0.2s, border-bottom 0.2s;
-    padding-bottom: 2px;
-  }
-  
-  .navbar-links li a:hover {
-    color: #ffcc00;
-    border-bottom: 2px solid #ffcc00;
-    border-radius: 2px;
-  }
-  
-  /* Responsive básico */
-  @media (max-width: 600px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-      height: auto;
-      padding: 0.5rem 1rem;
-    }
-  
-    .navbar-links {
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
-    }
-  
-    .navbar-links li a {
-      width: 100%;
-    }
-  }  
+}

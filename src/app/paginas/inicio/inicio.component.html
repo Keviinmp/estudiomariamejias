@@ -1,1 +1,117 @@
-<p>inicio.component works!</p>
+<div class="inicio-container">
+
+    <header class="presentacion-glass">
+      <div class="texto-presentacion">
+        <h1>Estudio de Belleza<br> María Mejías</h1>
+        <p class="subtitulo">Manicuras de autor y cuidado exclusivo para tus manos. El detalle que marca la diferencia.</p>
+        <button class="btn-reserva-directa" (click)="irAServicios()">Reservar Cita</button>
+      </div>
+    </header>
+  
+    <section class="contenedor-carrusel-mapa">
+      
+      <div class="seccion-carrusel">
+        <button class="flecha izq" (click)="anterior()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+  
+        <div class="contenedor-foto">
+          <img [src]="imagenes[indiceActual]" class="foto-animada" alt="Diseño de uñas María Mejías">
+        </div>
+  
+        <button class="flecha der" (click)="siguiente()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+  
+      <div class="seccion-mapa">
+        <div class="contenedor-mapa">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d471.5250616852879!2d-5.837451515044488!3d37.34180146587881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126599e2040bf1%3A0x5e2342266d8cc76c!2sEstudio%20de%20Belleza%20Mar%C3%ADa%20Mej%C3%ADas!5e0!3m2!1ses!2ses!4v1771328835821!5m2!1ses!2ses" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+        <div class="info-ubicacion">
+          <mat-icon>location_on</mat-icon>
+          <span>Calle General Prim, 18 Local 1, Alcalá de Guadaíra</span>
+        </div>
+      </div>
+  
+    </section>
+  
+    <section class="sobre-mi-glass">
+      <div class="sobre-mi-contenido">
+        <div class="sobre-mi-texto">
+          <span class="tag">Mi Pasión</span>
+          <h2>Más que solo pintar uñas ✨</h2>
+          <p>
+            Hola, soy <strong>María</strong>. Con 27 años, convertí mi obsesión por los detalles y el arte en mi profesión. Tras años perfeccionando técnicas de <strong>nail art, nivelación y extensiones</strong>, decidí abrir este espacio para las que buscáis algo más que una manicura convencional.
+          </p>
+          <p>
+            En mi estudio, cada set de uñas es un lienzo en blanco. Me encanta trabajar con calma, priorizando siempre la <strong>salud de tu uña natural</strong> y utilizando los mejores materiales. No quiero que solo lleves unas uñas bonitas, quiero que salgas de aquí sintiéndote poderosa y con una manicura impecable que dure semanas.
+          </p>
+          <p><strong>¡Hagamos magia en tus manos!</strong></p>
+        </div>
+        <div class="sobre-mi-imagen">
+          <img src="assets/imagenes/maria.jpeg" alt="María Mejías haciendo nail art">
+        </div>
+      </div>
+    </section>
+  
+    <section class="comodidades-glass">
+      <h3>Servicios del Estudio</h3>
+      <div class="comodidades-grid">
+        <div class="comodidad-item">
+          <mat-icon>wifi</mat-icon>
+          <span>Wi-Fi gratuito</span>
+        </div>
+        <div class="comodidad-item">
+          <mat-icon>credit_card</mat-icon>
+          <span>Aceptamos tarjeta</span>
+        </div>
+        <div class="comodidad-item">
+          <mat-icon>favorite</mat-icon>
+          <span>Programa fidelidad</span>
+        </div>
+        <div class="comodidad-item">
+          <mat-icon>pets</mat-icon>
+          <span>Pet Friendly</span>
+        </div>
+      </div>
+    </section>
+  
+    <footer class="contacto-glass">
+      <div class="contacto-item">
+        <mat-icon>phone</mat-icon>
+        <div class="info-meta">
+          <span>Citas y consultas</span>
+          <p>+34 621 291 281</p>
+        </div>
+      </div>
+  
+      <a href="https://instagram.com/estudiomariamejias" target="_blank" class="contacto-item link-instagram">
+        <mat-icon>camera_alt</mat-icon>
+        <div class="info-meta">
+          <span>Instagram</span>
+          <p>@estudiomariamejias</p>
+        </div>
+      </a>
+  
+      <div class="contacto-item">
+        <mat-icon>location_on</mat-icon>
+        <div class="info-meta">
+          <span>Ubicación</span>
+          <p>Calle General Prim, 18 Local 1, Alcalá de Guadaíra, Sevilla</p>
+        </div>
+      </div>
+  
+      <div class="contacto-item">
+        <mat-icon>schedule</mat-icon>
+        <div class="info-meta">
+          <span>Horario</span>
+          <p>Lunes a Viernes: 10:00 - 19:00</p>
+        </div>
+      </div>
+    </footer>
+  
+  </div>

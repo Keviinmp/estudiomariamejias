@@ -1,0 +1,121 @@
+.seccion-resenas {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .cabecera h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .cabecera p {
+    color: #7f8c8d;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  
+  .contenedor-iframe {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  
+  .google-footer {
+    margin-top: 30px;
+  }
+  
+  .google-footer a {
+    color: #d4a373;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #d4a373;
+    transition: all 0.3s ease;
+  }
+  
+  .google-footer a:hover {
+    color: #b88b5d;
+    border-color: #b88b5d;
+  }
+  
+  /* Ajustes para móvil */
+  @media (max-width: 768px) {
+    .seccion-resenas {
+      padding: 40px 10px;
+    }
+    
+    .contenedor-iframe {
+      height: 800px;
+    }
+  }
+
+  .footer-slim {
+    background-color: #dffcff;
+    padding: 15px 0; /* Padding muy pequeño para que sea estrecho */
+    border-top: 1px solid rgba(31, 138, 168, 0.1);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .footer-avatar {
+    width: 30px; /* Logo minúsculo para no abultar */
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .copyright {
+    font-size: 0.85rem;
+    color: #455a64;
+  }
+  
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #1f8aa8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .footer-right a:hover {
+    color: #2c3e50;
+  }
+  
+  .sep {
+    color: #1f8aa8;
+    opacity: 0.3;
+    font-size: 0.8rem;
+  }
+  
+  /* Versión móvil: uno encima de otro pero manteniendo la finura */
+  @media (max-width: 600px) {
+    .footer-container {
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+  }

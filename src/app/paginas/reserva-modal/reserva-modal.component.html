@@ -22,7 +22,8 @@
             <div *ngFor="let dia of diasVisibles" 
                 class="dia-card" 
                 [class.seleccionado]="dia.numero === diaSeleccionado"
-                (click)="seleccionarDia(dia.numero)">
+                [class.dia-deshabilitado]="dia.esFinDeSemana || dia.estaLleno"
+                (click)="!dia.esFinDeSemana && !dia.estaLleno && seleccionarDia(dia.numero)">
               <span class="dia-nombre">{{ dia.nombre }}</span>
               <span class="dia-numero">{{ dia.numero }}</span>
             </div>
@@ -30,14 +31,14 @@
           <button class="nav-btn" (click)="scrollDias(200)"><mat-icon>chevron_right</mat-icon></button>
         </div>
 
-        <div class="turno-container">
+        <div class="turno-container" *ngIf="horasDisponibles.length > 0">
           <div class="turno-selector">
             <button [class.active]="turnoSeleccionado === 'Mañana'" (click)="cambiarTurno('Mañana')">Mañana</button>
             <button [class.active]="turnoSeleccionado === 'Tarde'" (click)="cambiarTurno('Tarde')">Tarde</button>
           </div>
         </div>
 
-        <div class="horas-container">
+        <div class="horas-container" *ngIf="horasDisponibles.length > 0">
           <div class="horas-grid">
             <button *ngFor="let h of horasDisponibles" 
                     class="hora-chip" 
@@ -47,31 +48,60 @@
             </button>
           </div>
         </div>
+
+        <div *ngIf="horasDisponibles.length === 0" class="mensaje-vacio">
+          <mat-icon class="icono-vacio">calendar_today</mat-icon>
+          <h3>No queda disponibilidad en esta fecha</h3>
+          <p>Para completar la reserva, elige otra fecha o haz clic a continuación para encontrar la primera fecha disponible.</p>
+          <button class="btn-buscar-libre" (click)="proximaFechaDisponible()">
+            Buscar la primera fecha disponible
+          </button>
+        </div>
       </div>
 
       <form [formGroup]="reservaForm" *ngIf="paso === 2" class="formulario-datos">
+  
         <div class="campo">
           <label>Nombre completo</label>
           <input formControlName="nombre" placeholder="Nombre y apellidos">
-          <small class="error" *ngIf="reservaForm.get('nombre')?.invalid && reservaForm.get('nombre')?.touched">
-            El nombre es obligatorio.
-          </small>
+          <div class="error-container" *ngIf="reservaForm.get('nombre')?.touched">
+            <small class="error" *ngIf="reservaForm.get('nombre')?.errors?.['required']">
+              El nombre es obligatorio.
+            </small>
+          </div>
         </div>
-
+      
         <div class="campo">
           <label>Correo electrónico</label>
           <input formControlName="email" type="email" placeholder="ejemplo@gmail.com">
+          <div class="error-container" *ngIf="reservaForm.get('email')?.touched">
+            <small class="error" *ngIf="reservaForm.get('email')?.errors?.['required']">
+              El correo es obligatorio para enviarte el comprobante.
+            </small>
+            <small class="error" *ngIf="reservaForm.get('email')?.errors?.['email']">
+              Falta el símbolo '@' o el formato del correo es incorrecto.
+            </small>
+          </div>
         </div>
-
+      
         <div class="campo">
           <label>Teléfono</label>
           <input formControlName="telefono" type="tel" placeholder="600000000">
+          <div class="error-container" *ngIf="reservaForm.get('telefono')?.touched">
+            <small class="error" *ngIf="reservaForm.get('telefono')?.errors?.['required']">
+              Necesitamos un teléfono de contacto.
+            </small>
+            <small class="error" *ngIf="reservaForm.get('telefono')?.errors?.['pattern']">
+              El teléfono debe tener 9 números (ej: 600123456).
+            </small>
+          </div>
         </div>
-
+      
         <div class="campo">
           <label>Notas adicionales</label>
           <textarea formControlName="notas" rows="3" placeholder="¿Algún detalle extra?"></textarea>
         </div>
+      
       </form>
 
       <div *ngIf="paso === 3" class="exito-container">
@@ -79,6 +109,7 @@
         <h3>¡Todo listo!</h3>
         <p>Tu reserva para <strong>{{ servicio.nombre }}</strong> ha sido registrada.</p>
         <p>Nos vemos el día {{ diaSeleccionado }} a las {{ horaSeleccionada }}.</p>
+        <p>Revisa tu bandeja de email</p>
       </div>
 
       <div class="resumen-card" *ngIf="paso < 3">
@@ -95,7 +126,7 @@
 
     <mat-dialog-actions>
       <button class="btn-continuar" 
-              *ngIf="paso === 1" 
+              *ngIf="paso === 1 && horasDisponibles.length > 0" 
               [disabled]="!horaSeleccionada" 
               (click)="siguientePaso()">
         Continuar
@@ -113,3 +144,5 @@
       </button>
     </mat-dialog-actions>
   </div>
+
+  

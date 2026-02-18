@@ -1,4 +1,11 @@
-<div class="categorias">
+<div class="contenedor-servicios-glass">
+  <div *ngIf="cargando" class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando servicios del estudio...</p>
+  </div>
+
+  <div class="categorias">
+</div>
   <div class="categoria" *ngFor="let categoria of serviciosPorCategoria | keyvalue">
 
     <div class="categoria-header" (click)="categoriasAbiertas[categoria.key] = !categoriasAbiertas[categoria.key]">
@@ -46,3 +53,18 @@
   [servicio]="servicioSeleccionado"
   (cerrar)="cerrarDetalle()"
 ></app-detalle-servicio>
+
+<footer class="footer-slim">
+  <div class="footer-container">
+    <div class="footer-left">
+      <img src="assets/imagenes/logo.jpeg" alt="María Mejías" class="footer-avatar">
+      <span class="copyright">© 2026 <strong>María Mejías</strong></span>
+    </div>
+    
+    <div class="footer-right">
+      <a routerLink="/resenas">Opiniones</a>
+      <span class="sep">|</span>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJ8QsE4pllEg0RbMeMbSZCI14" target="_blank">Google Maps</a>
+    </div>
+  </div>
+</footer>

@@ -34,7 +34,7 @@
 }
 
 .titulo {
-    margin-top: 2rem; /* ajusta según el tamaño de la X */
+    margin-top: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
     text-align: left;
@@ -55,7 +55,7 @@
     background: rgba(0,0,0,0.5);
     color: white;
     border: none;
-    font-size: 1.5rem;    /* tamaño relativo a la fuente */
+    font-size: 1.5rem;
     cursor: pointer;
     border-radius: 50%;
     width: 2.5rem;
@@ -85,19 +85,19 @@
 /* Precio + botón */
 .info-reserva {
     display: flex;
-    justify-content: space-between; /* botón a la derecha */
-    align-items: center;            /* alinea el botón con el centro de .info */
+    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
 }
 
 .info-reserva .info {
     display: flex;
-    flex-direction: column; /* precio arriba, duración debajo */
-    gap: 0.1rem;            /* mínimo espacio entre precio y duración */
+    flex-direction: column;
+    gap: 0.1rem;
 }
 
 .info-reserva .info p {
-    margin: 0;               /* elimina márgenes de los <p> */
+    margin: 0;
 }
 
 .precio {
